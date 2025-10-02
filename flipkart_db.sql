@@ -66,6 +66,10 @@ select name as item_name , price as item_price from products ;
 select distinct category from products ;
 
 
+
+
+
+
 -- COMPARISON OPERATORS 
 
 select * from products 
@@ -126,6 +130,56 @@ like '_B%';  -- have 2nd letter B
 
 select * from products 
 where not category  = 'Electronics';   -- no electronics will print
+
+
+
+
+
+-- Aggregation Functions 
+
+select count (product_id) from products ;
+
+select sum(price) from products ;
+
+
+select sum(price) from products 
+where category = 'Electronics' 
+or category = 'Fitness';
+
+
+select avg(price) from products  ;
+
+select round(avg(price),2) from products  ; -- round off
+
+select min(price) from products  ;
+
+select max(price) from products  ;
+
+
+-- Test
+
+-- display the name and price of the cheapest product in the entire table 
+select name , price from products 
+where price = (select min(price) from products);
+
+
+-- find the average price of products that belong to the 'home & kitchen ' or 'fitness' category 
+select round(avg(price),2) from products 
+where category = 'Home & Kitchen' or category = 'Fitness';
+
+
+-- show product names and stock quantity where the product is available ,stock is more than 50 and price is not equal to 299
+select name , stock_quantity from products 
+where is_available = true and stock_quantity > 50 and price != 299 ;
+
+-- find the most expensive product in each category (name and price)
+select  category ,max(price) as max_price from products 
+group by category;
+
+-- show all unique categories in uppercase , sorted in descending order ?
+select distinct upper(category) as category from products 
+order by Category desc;
+
 
 
 select * from products 
