@@ -66,11 +66,66 @@ select name as item_name , price as item_price from products ;
 select distinct category from products ;
 
 
+-- COMPARISON OPERATORS 
+
+select * from products 
+where category != 'Electronics'
+
+
+select * from products 
+where price > 1000;
+
+
+select * from products 
+where price > 1000
+and category = 'Electronics';
 
 
 
 
 
+select * from products 
+where price < 1000
+and price > 400;
+
+-- works the same 
+
+select * from products 
+where price 
+between 400 and 1000;
+
+
+
+
+
+select * from products 
+where category = 'Electronics'
+or category = 'Fitness'
+or category = 'Home & Kitchen';
+
+--works the same 
+
+select * from products 
+where category in ('Electronics', 'Fitness','Home & Kitchen');
+
+
+
+select * from products 
+where sku_code 
+like 'W%';  -- starts with W
+
+
+select * from products 
+where sku_code 
+like '%123%';  -- have 123 in btw
+
+select * from products 
+where sku_code 
+like '_B%';  -- have 2nd letter B
+
+
+select * from products 
+where not category  = 'Electronics';   -- no electronics will print
 
 
 select * from products 
