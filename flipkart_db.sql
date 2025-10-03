@@ -183,3 +183,27 @@ order by Category desc;
 
 
 select * from products 
+
+
+
+
+--String functions
+
+select upper(name) from products ;
+
+select lower(sku_code) from products ;
+
+select length (name ) from products ;
+
+
+
+
+
+
+
+
+
+
+
+
+
