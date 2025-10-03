@@ -194,14 +194,34 @@ select lower(sku_code) from products ;
 select length (name ) from products ;
 
 
+-- substring 
+
+select name , lower(substring(sku_code , 1,2) ) as sku_code_lower from products ;   --multiple string functionality 
+ 
+--left and right
+
+select name ,left(sku_code,2 ) from products ;
+
+select name ,right(sku_code,2 ) from products ;
+
+
+
+
+--concat
+select concat(name ,' ',category ) as product_with_category from products ;
+
+--with space 
+select concat_ws(' ',name,category ) as product_with_category from products ;   --btw both works the same  :)
 
 
 
 
 
+--trim and replace
 
+select trim('   lavender   ');
 
-
+select name , replace (sku_code ,left(sku_code,2),'GG')from products ;
 
 
 
