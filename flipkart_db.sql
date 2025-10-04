@@ -229,6 +229,65 @@ select name , replace (sku_code ,left(sku_code,2),'GG')from products ;
 
 
 
+--CASE --
+
+--like if else 
+
+select name , price ,
+CASE 
+	WHEN (price > 1000) then 'Expensive'
+	WHEN price between 500 and 1000 then 'Moderate'
+	ELSE 'Cheap'
+END AS price_tage
+from products ;   --its just a snapshot
+
+
+--to actually create a new column as price_tage
+
+
+ALTER TABLE products
+add column price_tage text ;
+
+
+
+--updating that column using the case senerio
+
+
+update products 
+set price_tage = 
+CASE
+	WHEN (price > 1000) then 'Expensive'
+	WHEN price between 500 and 1000 then 'Moderate'
+	ELSE 'Cheap'
+END ;                   --AS price_tage--   no need for this now 
+where product_id = 1 
+
+
+--question 1 
+select name ,
+CASE 
+	WHEN is_available then 'in stock'
+	else 'out of stock'
+end as availability_status
+from products ;
+
+
+--question 2
+
+
+
+select * from products ;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
