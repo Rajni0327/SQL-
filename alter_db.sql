@@ -40,7 +40,7 @@ ALTER TABLE students
 ALTER COLUMN age TYPE smallint ; 
 
 
-
+-- 
 -- SET a DEFAULt value 
 ALTER TABLE students 
 ALTER COLUMN age SET DEFAULT 18;
@@ -48,20 +48,29 @@ ALTER COLUMN age SET DEFAULT 18;
 
 
 -- Remove default column
+ALTER TABLE students 
+ALTER COLUMN age DROP DEFAULT ;
 
 
 
+-- ADD a CONSTRAINT
+
+ALTER TABLE students 
+ADD CONSTRAINT age_check CHECK(age >= 0 ) ;  --when you add constraint while making the table , it automatically ads age_chek , but if you're adding it later you have give age_check
+ 
+
+
+-- DROP a CONSTRAINT 
+
+ALTER TABLE students 
+DROP CONSTRAINT age_check ;
 
 
 
+-- RENAME the table 
 
-
-
-
-
-
-
-
+ALTER TABLE students 
+RENAME to school_students ;
 
 
 
