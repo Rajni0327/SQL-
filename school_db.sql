@@ -37,6 +37,21 @@ foreign key (student_id)
 references students(student_id);
 	
 
+--one to oen relation 
+
+select
+s.student_id,
+s.name,
+sp.address,
+sp.age,
+sp.phone
+from students s 
+join student_profiles sp
+on s.student_id = sp.student_id;  --joining two tables
+
+
+ 
+
 select * from student_profiles ;
 select * from students ;
 
@@ -45,17 +60,53 @@ select * from students ;
 
 
 
+--one to many relation 
+
+
+--above students table 
+
+create table marks (
+marks_id serial primary key ,
+student_id int , 
+subjects varchar (50),
+marks int,
+foreign key (student_id) references students(student_id)
+);
 
 
 
+insert into marks (student_id, subjects , marks )
+values
+(1,'english',67),
+(1,'maths',45),
+(1,'science',92),
+
+(1,'english',80),
+(1,'maths',89),
+(1,'science',78),
+
+(1,'english',65),
+(1,'maths',40),
+(1,'science',74)
+;
 
 
 
+select * from students ;
+select * from marks ;
 
 
+--questions 
 
+-- show each student's name along with their subject 
 
+-- show marks for only simran vyas in all subjects 
 
+-- show only those subjects where marks are above 80
+
+-- sort all students subjects marks in descending order of marks 
+
+-- show each students average marks 
 
 
 
