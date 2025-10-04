@@ -273,6 +273,35 @@ from products ;
 
 
 --question 2
+select name, stock_quantity,
+case 
+	when (stock_quantity >100) then 'High Stock'
+	when stock_quantity between 30 and 100 then 'medium Stock'
+	else 'low stock'
+end
+from products ; 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
