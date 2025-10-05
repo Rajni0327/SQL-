@@ -37,7 +37,7 @@ foreign key (student_id)
 references students(student_id);
 	
 
---one to oen relation 
+--one to one relation 
 
 select
 s.student_id,
@@ -81,14 +81,35 @@ values
 (1,'maths',45),
 (1,'science',92),
 
-(1,'english',80),
-(1,'maths',89),
-(1,'science',78),
+(2,'english',80),
+(2,'maths',89),
+(2,'science',78),
 
-(1,'english',65),
-(1,'maths',40),
-(1,'science',74)
+(3,'english',65),
+(3,'maths',40),
+(3,'science',74)
 ;
+
+
+
+--INNER join 
+
+select s.name , m.subjects , m.marks 
+from students s
+join marks m
+on s.student_id = m.student_id ;
+
+
+
+
+insert into students (name)
+values ('harsh patel');
+
+
+
+
+
+
 
 
 
@@ -99,8 +120,21 @@ select * from marks ;
 --questions 
 
 -- show each student's name along with their subject 
+select s.name , m.subjects 
+from students s
+join marks m
+on s.student_id = m.student_id ;
+
+
+
 
 -- show marks for only simran vyas in all subjects 
+
+select s.name , m.subjects , m.marks 
+from students s
+join marks m
+on s.student_id = m.student_id
+where name = 'simran vyas';
 
 -- show only those subjects where marks are above 80
 
