@@ -155,8 +155,6 @@ cross join marks m ;
 
 
 
-select * from students ;
-select * from marks ;
 
 
 --questions 
@@ -180,22 +178,88 @@ where name = 'simran vyas';
 
 -- show only those subjects where marks are above 80
 
+select m.subjects , m.marks from marks m 
+join students s 
+on m.student_id = s.student_id  
+where m.marks > 80 ;
+
 -- sort all students subjects marks in descending order of marks 
 
+select m.subjects , m.marks from marks m 
+join students s 
+on m.student_id = s.student_id  
+order by m.marks desc;
+
+
 -- show each students average marks 
+select s.name, round(avg(m.marks),2) from students s
+join marks m
+on s.student_id = m.student_id  
+group by s.name ;
 
 
 
 
+select * from students ;
+select * from marks ;
+
+
+
+--many to many relationships 
+--same students table 
+
+create table courses (
+course_id int primary key ,
+course_name varchar(100)
+);
+
+insert into courses (course_id , course_name)
+values 
+(101,'python'),
+(102,'SQL'),
+(103,'power BI');
+
+
+create table student_courses (
+student_id int ,
+course_id int ,
+primary key (student_id , course_id ),  -- composit primary key 
+foreign key (student_id) references students(student_id),
+foreign key (course_id) references courses(course_id)
+);
+
+
+INSERT INTO student_courses (student_id, course_id) VALUES
+(1, 101),   -- srathak - python 
+(1, 102),   -- sarthak - sql
+(2, 101),   -- simran - python
+(2, 103),   -- simran - power bi
+(3, 102);   -- rishi - sql
+
+
+
+--show the list of students with the courses they are enrolled in 
+
+select s.name,c.course_name
+from student_courses sc 
+join students s on sc.student_id = s.student_id
+join courses c on sc.course_id = c.course_id ;
+
+
+-- find all the courses taken by tghe students names 'simran'
+
+select c.course_name
+from student_courses sc 
+join students s on sc.student_id = s.student_id
+join courses c on sc.course_id = c.course_id 
+where s.name = 'simran vyas';
 
 
 
 
-
-
-
-
-
+select * from student_courses;
+select * from courses ;
+select * from students ;
 
 
 

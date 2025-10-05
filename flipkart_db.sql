@@ -287,19 +287,55 @@ from products ;
 
 
 
+select * from products ;
+
+-- views  
+
+create view fitness_items as 
+select product_id , name , price , stock_quantity 
+from products 
+where category = 'Fitness';
 
 
 
+select * from fitness_items ;
 
 
 
+create view low_stock as 
+select category , stock_quantity 
+from products 
+where stock_quantity <30 ;
+
+
+select * from low_stock ;
 
 
 
+ 
+
+-- procedures   like functions 
 
 
+CREATE PROCEDURE add_product(
+p_name VARCHAR,
+p_sku CHAR(8),
+p_price NUMERIC,
+p_qty INT,
+p_category TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO products(name, sku_code, price, stock_quantity, category)
+    VALUES (p_name, p_sku, p_price, p_qty, p_category);
+
+    RAISE NOTICE 'Product added successfully!';
+END;
+$$;
 
 
+call add_product ('bottle', 'bo123467', 234.00,23,'Fitness');
 
 
 
