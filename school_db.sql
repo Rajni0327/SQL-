@@ -107,7 +107,49 @@ values ('harsh patel');
 
 
 
+--left join
 
+select s.name ,m.subjects ,m.marks 
+from students s 
+left join marks m 
+on s.student_id = m.student_id ;
+
+
+
+insert into marks (student_id , subjects , marks )
+values (4,'english', 34);
+
+ 
+
+-- right join
+
+select s.name ,m.subjects ,m.marks 
+from students s 
+right join marks m 
+on s.student_id = m.student_id ;
+
+
+
+
+insert into students (name)
+values ('suru');
+
+
+--full join 
+
+select s.name ,m.subjects ,m.marks 
+from students s 
+full join marks m 
+on s.student_id = m.student_id ;
+
+
+
+
+--cross join 
+
+select s.name , m.subjects , m.marks 
+from students s
+cross join marks m ;
 
 
 
